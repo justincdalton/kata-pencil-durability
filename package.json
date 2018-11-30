@@ -1,0 +1,26 @@
+{
+  "name": "kata-pencil-durability",
+  "version": "1.0.0",
+  "description": " Kata to simulate wearing down an ordinary pencil writing letters",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justincdalton/kata-pencil-durability.git"
+  },
+  "author": "Justin Dalton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justincdalton/kata-pencil-durability/issues"
+  },
+  "homepage": "https://github.com/justincdalton/kata-pencil-durability#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.0",
+    "jest": "^23.6.0"
+  }
+}
