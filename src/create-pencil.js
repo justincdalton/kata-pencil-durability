@@ -1,5 +1,5 @@
 const createPencil = (input = {}) => {
-  let { durability } = input;
+  let { durability, length } = input;
   const initialDurability = durability;
 
   const reduceDurability = (amount) => {
@@ -30,7 +30,10 @@ const createPencil = (input = {}) => {
     },
     getDurability: () => durability,
     sharpen() {
-      durability = initialDurability;
+      if (length) {
+        durability = initialDurability;
+        length -= 1;
+      }
     },
   };
 };

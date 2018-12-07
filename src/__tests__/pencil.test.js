@@ -26,10 +26,19 @@ test('the pencil writes blank spaces when it runs out of durability', () => {
 
 test('sharpening the pencil resets the durability to the initial value', () => {
   const paper = '';
-  const pencil = createPencil({ durability: 20 });
-  const text = 'I want to write a lot to use up the graphite';
-  pencil.write(paper, text);
+  const pencil = createPencil({ durability: 20, length: 3 });
+  pencil.write(paper, 'I want to write a lot to use up the graphite');
   expect(pencil.getDurability()).toEqual(0);
   pencil.sharpen();
   expect(pencil.getDurability()).toEqual(20);
+});
+
+test('sharpening the pencil when the length is 0 no longer restores durability', () => {
+  const paper = '';
+  const pencil = createPencil({ durability: 20, length: 2 });
+  pencil.sharpen();
+  pencil.sharpen();
+  pencil.write(paper, 'Writing a little');
+  pencil.sharpen();
+  expect(pencil.getDurability()).toEqual(5);
 });
