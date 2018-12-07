@@ -18,10 +18,18 @@ test('the pencil writes additional text on paper with existing text', () => {
 
 test('the pencil writes blank spaces when it runs out of durability', () => {
   const paper = '';
-  const pencil = createPencil({
-    durability: 10,
-  });
+  const pencil = createPencil({ durability: 10 });
   const text = 'How much will this write?';
   const result = pencil.write(paper, text);
   expect(result).toEqual('How much wi              ');
+});
+
+test('sharpening the pencil resets the durability to the initial value', () => {
+  const paper = '';
+  const pencil = createPencil({ durability: 20 });
+  const text = 'I want to write a lot to use up the graphite';
+  pencil.write(paper, text);
+  expect(pencil.getDurability()).toEqual(0);
+  pencil.sharpen();
+  expect(pencil.getDurability()).toEqual(20);
 });

@@ -1,5 +1,6 @@
 const createPencil = (input = {}) => {
   let { durability } = input;
+  const initialDurability = durability;
 
   const reduceDurability = (amount) => {
     durability -= amount;
@@ -26,6 +27,10 @@ const createPencil = (input = {}) => {
       const processedText = processText(text);
 
       return `${paper}${paper && ' '}${processedText}`;
+    },
+    getDurability: () => durability,
+    sharpen() {
+      durability = initialDurability;
     },
   };
 };
