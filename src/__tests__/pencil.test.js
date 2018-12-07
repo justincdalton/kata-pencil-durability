@@ -42,3 +42,10 @@ test('sharpening the pencil when the length is 0 no longer restores durability',
   pencil.sharpen();
   expect(pencil.getDurability()).toEqual(5);
 });
+
+test('erasing text replaces the last instance of the value with empty spaces', () => {
+  const paper = 'some text is somehow out of place';
+  const pencil = createPencil({ durability: 20, length: 2 });
+  const result = pencil.erase(paper, 'some');
+  expect(result).toEqual('some text is     how out of place');
+});

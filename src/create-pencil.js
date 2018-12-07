@@ -35,6 +35,13 @@ const createPencil = (input = {}) => {
         length -= 1;
       }
     },
+    erase(paper, text) {
+      const index = paper.lastIndexOf(text);
+      const firstPart = paper.substring(0, index);
+      const lastPart = paper.substring(index + text.length);
+      const blankPart = new Array(text.length + 1).join(' ');
+      return `${firstPart}${blankPart}${lastPart}`;
+    },
   };
 };
 
