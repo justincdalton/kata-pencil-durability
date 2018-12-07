@@ -84,3 +84,10 @@ test('editing the paper with text that is larger than the whitespace inserts @ c
   const result = pencil.edit(paper, 'missing');
   expect(result).toEqual('something is miss@@gthis spot');
 });
+
+test('editing the paper with text with white space returns the current character', () => {
+  const paper = 'something is    missing';
+  const pencil = createPencil({ durability: 20, eraserDurability: 3, length: 2 });
+  const result = pencil.edit(paper, 'not here');
+  expect(result).toEqual('something is notm@@@@ng');
+});

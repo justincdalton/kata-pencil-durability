@@ -4,7 +4,8 @@
   "description": " Kata to simulate wearing down an ordinary pencil writing letters",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest src"
+    "test": "jest src",
+    "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"
   },
   "repository": {
     "type": "git",

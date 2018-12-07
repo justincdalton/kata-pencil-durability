@@ -18,12 +18,8 @@ const createPencil = (input = {}) => {
       return `${prev}${char}`;
     }
 
-    if (char === char.toUpperCase()) {
-      reduceDurability(2);
-      return `${prev}${char}`;
-    }
-
-    return prev;
+    reduceDurability(2);
+    return `${prev}${char}`;
   }, '');
 
   const processErasure = text => text
