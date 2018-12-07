@@ -1,9 +1,13 @@
 const createPencil = (input = {}) => {
-  let { durability, length } = input;
+  let { durability, eraserDurability, length } = input;
   const initialDurability = durability;
 
   const reduceDurability = (amount) => {
     durability -= amount;
+  };
+
+  const reduceEraserDurability = (amount) => {
+    eraserDurability -= amount;
   };
 
   const processText = text => text.split('').reduce((prev, char) => {
@@ -21,6 +25,16 @@ const createPencil = (input = {}) => {
 
     return prev;
   }, '');
+
+  const processErasure = text => text
+    .split('')
+    .reverse()
+    .reduce((prev, char) => {
+      if (eraserDurability < 1 || char === ' ') return `${char}${prev}`;
+
+      reduceEraserDurability(1);
+      return ` ${prev}`;
+    }, '');
 
   return {
     write(paper, text) {
@@ -42,7 +56,7 @@ const createPencil = (input = {}) => {
 
       const firstPart = paper.substring(0, index);
       const lastPart = paper.substring(index + text.length);
-      const blankPart = new Array(text.length + 1).join(' ');
+      const blankPart = processErasure(text);
       return `${firstPart}${blankPart}${lastPart}`;
     },
   };

@@ -56,3 +56,10 @@ test('erasing text that is not on the paper should return the original', () => {
   const result = pencil.erase(paper, 'not');
   expect(result).toEqual('this is good text');
 });
+
+test('erasing text when there is no eraser durability should leave the characters', () => {
+  const paper = 'we should erase some of this';
+  const pencil = createPencil({ durability: 20, eraserDurability: 3, length: 2 });
+  const result = pencil.erase(paper, 'some');
+  expect(result).toEqual('we should erase s    of this');
+});
