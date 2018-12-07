@@ -36,6 +36,19 @@ const createPencil = (input = {}) => {
       return ` ${prev}`;
     }, '');
 
+  const processEdit = (current, text) => text.split('').reduce((prev, char, index) => {
+    const currentChar = current.charAt(index);
+
+    if (currentChar !== ' ' && char !== ' ') {
+      return `${prev}@`;
+    }
+    if (char === ' ') {
+      return `${prev}${currentChar}`;
+    }
+
+    return `${prev}${char}`;
+  }, '');
+
   return {
     write(paper, text) {
       const processedText = processText(text);
@@ -64,10 +77,14 @@ const createPencil = (input = {}) => {
 
       if (index < 0) return paper;
 
-      const firstPart = paper.substring(0, index);
-      const lastPart = paper.substring(index).trim();
+      const shiftedIndex = index + 1;
+
+      const firstPart = paper.substring(0, shiftedIndex);
+      const middlePart = paper.substring(shiftedIndex, shiftedIndex + text.length);
+      const lastPart = paper.substring(shiftedIndex + text.length);
       const processedText = processText(text);
-      return `${firstPart} ${processedText} ${lastPart}`;
+      const editedPart = processEdit(middlePart, processedText);
+      return `${firstPart}${editedPart}${lastPart}`;
     },
   };
 };
