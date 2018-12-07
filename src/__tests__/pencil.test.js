@@ -49,3 +49,10 @@ test('erasing text replaces the last instance of the value with empty spaces', (
   const result = pencil.erase(paper, 'some');
   expect(result).toEqual('some text is     how out of place');
 });
+
+test('erasing text that is not on the paper should return the original', () => {
+  const paper = 'this is good text';
+  const pencil = createPencil({ durability: 20, length: 2 });
+  const result = pencil.erase(paper, 'not');
+  expect(result).toEqual('this is good text');
+});
