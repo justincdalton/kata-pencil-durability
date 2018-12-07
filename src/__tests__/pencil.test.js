@@ -63,3 +63,10 @@ test('erasing text when there is no eraser durability should leave the character
   const result = pencil.erase(paper, 'some');
   expect(result).toEqual('we should erase s    of this');
 });
+
+test('editing the paper fills in extra white space with text', () => {
+  const paper = 'something is         here';
+  const pencil = createPencil({ durability: 20, eraserDurability: 3, length: 2 });
+  const result = pencil.edit(paper, 'missing');
+  expect(result).toEqual('something is missing here');
+});

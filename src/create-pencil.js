@@ -59,6 +59,13 @@ const createPencil = (input = {}) => {
       const blankPart = processErasure(text);
       return `${firstPart}${blankPart}${lastPart}`;
     },
+    edit(paper, text) {
+      const index = paper.indexOf('  ');
+      const firstPart = paper.substring(0, index);
+      const lastPart = paper.substring(index).trim();
+      const processedText = processText(text);
+      return `${firstPart} ${processedText} ${lastPart}`;
+    },
   };
 };
 
