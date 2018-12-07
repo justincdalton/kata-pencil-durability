@@ -70,3 +70,10 @@ test('editing the paper fills in extra white space with text', () => {
   const result = pencil.edit(paper, 'missing');
   expect(result).toEqual('something is missing here');
 });
+
+test('editing the paper ignores the text if there is no space', () => {
+  const paper = 'something is here';
+  const pencil = createPencil({ durability: 20, eraserDurability: 3, length: 2 });
+  const result = pencil.edit(paper, 'missing');
+  expect(result).toEqual('something is here');
+});

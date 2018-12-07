@@ -61,6 +61,9 @@ const createPencil = (input = {}) => {
     },
     edit(paper, text) {
       const index = paper.indexOf('  ');
+
+      if (index < 0) return paper;
+
       const firstPart = paper.substring(0, index);
       const lastPart = paper.substring(index).trim();
       const processedText = processText(text);
